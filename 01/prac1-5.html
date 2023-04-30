@@ -12,10 +12,20 @@
         function runButtonPressed() {
             var numbers = [];
             //prac1-5〜 1から10までの数を順に10個挿入する
-            show(numbers);
+            for(var i=1; i<=10; i++){
+                numbers.push(i);
+            }
+            //show(numbers);
             //prac1-5 全ての要素に10を足す
+            for(var i=1; i<=numbers.length; i++){
+                numbers[i] + 10;
+            }
             //prac1-6 全ての要素に10をかける
-            show(numbers);
+            for(var i=1; i<=numbers.length; i++){
+                numbers[i] * 10;
+            }
+            //show(numbers);
+            console.log(numbers);
         }
     </script>
 
