@@ -11,9 +11,19 @@
     <script>
         function runButtonPressed() {
             //prac3-1 10個の乱数の合計を求める（繰り返しで）
+            var numbers = [];
+            createRandomNumbers(numbers, 10);
+            var total = 0;
+            for(var i=0; i<10; i++){
+                total = total + numbers[i];
+                show(total);
+            }
             //prac3-2 10個の乱数の平均を求める
+            show(mean(numbers));
             //prac3-3 10個の乱数の最大値を求める
+            show(max(numbers));
             //prac3-4 10個の乱数の最小値を求める
+            show(min(numbers));
         }
     </script>
 
