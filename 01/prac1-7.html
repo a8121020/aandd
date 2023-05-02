@@ -15,22 +15,31 @@
             //関数名：createSequentialNumbers(array, n)
             //できたら，関数定義をaandd.jsに移す
             function createSequentialNumbers(array,n){
-                for(var i=1; i<=n; i++){
-                    array.push(n);
+                for(var j=1; j<=n; j++){
+                    for(var i=1; i<=j; i++){
+                    array.push(i);
+                    console.log(array);
+                    }
                 }
             }
 
             //prac1-8 N個の乱数を挿入する関数を作る
             //関数名：createRandomNumbers(array, n)
             //できたら，関数定義をaandd.jsに移す
+
+            //繰り返し1回目にundefinedと出る理由がわからない　なにが定義されていないのか
+            var random1;
             function createRandomNumbers(array,n){
-                var random1 = Math.floor(Math.random()* n);
-                for(var i=1; i<=n; i++){
+                for(var i=0; i<=n; i++){
                     array.push(random1);
+                    console.log(array);
+                    random1 = Math.floor(Math.random() * 10 + 1);
                 }
             }
-            show(numbers);
+            //createSequentialNumbers(numbers,10);
+            createRandomNumbers(numbers,10);
         }
+        //show(numbers);
     </script>
 
 </head>
