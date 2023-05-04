@@ -1,6 +1,6 @@
 function createSequentialNumbers(array,n){
-                    for(var i=1; i<=n; i++){
-                    array.push(i);
+                    for(var i=0; i<=n; i++){
+                    array.push(i + 1);
                     console.log(array);
                     }
                 }

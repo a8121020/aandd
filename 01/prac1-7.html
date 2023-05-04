@@ -19,7 +19,7 @@
             //できたら，関数定義をaandd.jsに移す
             function createSequentialNumbers(array,n){
                     for(var i=1; i<=n; i++){
-                    array.push(i);
+                    array.push(i + 1);
                     console.log(array);
                     }
                 }
@@ -31,9 +31,8 @@
             //繰り返し1回目にundefinedと出る理由がわからない　なにが定義されていないのか
             //var random1 = Math.floor(Math.random() * 10) + 1;
             function createRandomNumbers(array,n){
-                var random1 = Math.floor(Math.random() * 10) + 1;
                 for(var i=0; i<n; i++){
-                    array.push(random1);
+                    array.push(Math.floor(Math.random)*10 + 1);
                     console.log(array);
                 }
             }

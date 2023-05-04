@@ -16,9 +16,8 @@
                 numbers.push(0);
             }
             //prac1-2 乱数を10個挿入する
-            var random1 = Math.floor(Math.random()*10) + 1;
             for(var i=1; i<=10; i++){
-                numbers.push(random1);
+                numbers.push(Math.floor(Math.random() * 10) + 1);
             }
             //prac1-3 '田中'を10個挿入する
             for(var i=1; i<=10; i++){
@@ -28,8 +27,8 @@
             for(var i=1; i<=20; i++){
                 numbers.push(i);
             }
+            show(numbers);
         }
-        show(numbers);
     </script>
 
 </head>
