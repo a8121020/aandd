@@ -12,22 +12,32 @@
         function runButtonPressed() {
         var numbers = [];
         //createSequentialNumbers(numbers, 10);
-        createRandomNumbers(numbers,10);
-        }
+        //createRandomNumbers(numbers,10);
             //prac1-7 1からNまでの数を順にN個挿入する関数を作る
             //関数名：createSequentialNumbers(array, n)
             //できたら，関数定義をaandd.jsに移す
-            function createSequentialNumbers(array,n){
+            /*function createSequentialNumbers(array,n){
                     for(var i=1; i<=n; i++){
-                    array.push(i + 1);
+                    array.push(i) * i;
                     console.log(array);
                     }
+                    show(array);
                 }
-
+        
+            */ var array = numbers;
+               array.push(1) //1回目の繰り返しの時は、1を1個入れる
+               array.push(2)
+               array.push(2);
+               array.push(3);
+               array.push(3);
+               array.push(3);
+               show(array);
+        }
             //prac1-8 N個の乱数を挿入する関数を作る
             //関数名：createRandomNumbers(array, n)
             //できたら，関数定義をaandd.jsに移す
 
+            /*
             //繰り返し1回目にundefinedと出る理由がわからない　なにが定義されていないのか
             //var random1 = Math.floor(Math.random() * 10) + 1;
             function createRandomNumbers(array,n){
@@ -36,7 +46,7 @@
                     console.log(array);
                 }
             }
-        //show(numbers);
+            */
     </script>
 
 </head>
