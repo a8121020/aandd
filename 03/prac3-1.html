@@ -19,21 +19,70 @@
             }
             show(total);
             //prac3-2 10個の乱数の平均を求める
-            console.log(total/numbers.length);
+            //console.log(total/numbers.length);
+
             //prac3-3 10個の乱数の最大値を求める
-            tmp = 1;
-            var a;
+            var tmp = -1;
             for(var i=0; i<10; i++){
                 if(numbers[i] > tmp){
                     tmp = numbers[i];
                 }
                 else{
-                tmp = 1;
+                    ;
                 }
             }
             console.log('最大値は' + tmp + 'です');
+
             //prac3-4 10個の乱数の最小値を求める
+            tmp = 11;
+            for(var i=0; i<numbers.length; i++){
+                if(numbers[i] < tmp){
+                    tmp = numbers[i];
+                }
+                else{
+                    ;
+                }
+                console.log('最小値は' + tmp + 'です');
+            }
         }
+        function search() {
+            document.getElementById('Current').innerHTML = 'バイナリーサーチがスタートしました';
+
+                //nをユーザーから入力してもらう
+                //nをバイナリーサーチ方式で探す
+
+                //1.ソートされたリストを用意する。
+                var search1 = [];
+                //2.検索する値を取得する。
+                var n = document.getElementById('SearchText').value
+                //3.検索範囲を初期化する。最初に検索する範囲はリスト全体とする。
+                var a;
+                for (var i = 1; i <= search1.length; i++) {
+                    a = a + i;
+                    console.log(a);
+            }
+
+                //8.検索範囲が存在しなくなるまで、手順4-7を繰り返す。
+                //while?
+                //4.検索範囲の中央の要素を取得する。
+                var b = a/2;
+                //5.取得した中央の要素が検索値と等しい場合、探索完了としてその要素のインデックスを返す。
+                if(b == n){
+                    document.getElementById('result').innerHTML = search[b];//?
+                }
+                //6.取得した中央の要素が検索値より小さい場合、検索範囲を中央より右側の部分に縮小する。
+                else if(b < n){
+                    //?
+                }
+                //7.取得した中央の要素が検索値より大きい場合、検索範囲を中央より左側の部分に縮小する。
+                else if(b > n){
+                    //?
+                }
+                //9.要素が見つからなかった場合は、探索終了としてnullを返す。
+                else if(a){ //?
+                document.getElementById('result').innerHTML = 'null';
+                }
+            }
     </script>
 
 </head>
@@ -42,6 +91,10 @@
     <h1>prac3</h1>
     <button onclick="runButtonPressed()">run!</button>
     <p id="res"></p>
+    <input id="SearchText" type="text">
+    <button onclick="search()">決定</button>
+    <p id="Current">バイナリーサーチ未完了</p>
+    <p id="result">まだ見つかっていません</p>
 </body>
 
 </html>
