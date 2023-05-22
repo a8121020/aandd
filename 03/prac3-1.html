@@ -9,32 +9,58 @@
     <script type="text/javascript" src="../jquery.min.js"></script>
 
     <script>
+        var total = 0;
+
         function runButtonPressed() {
+            search(20);
+        }
+
             //prac3-1 10個の乱数の合計を求める（繰り返しで）
-            var numbers = [];
-            createRandomNumbers(numbers, 10);
-            var total = 0;
-            for(var i=0; i<10; i++){
-                total = total + numbers[i];
+            function Total10(){
+                 var numbers = [];
+                createRandomNumbers(numbers, 10);
+                for(var i=0; i<10; i++){
+                    total = total + numbers[i];
+                    }
+            show(numbers);
+            console.log('合計値は' + total + 'です。')
             }
-            show(total);
+
             //prac3-2 10個の乱数の平均を求める
-            //console.log(total/numbers.length);
+            function Ave10(){
+                var numbers = [];
+                var Ave10;
+                createRandomNumbers(numbers,10);
+                for(var i=0; i<10; i++){
+                    total = total + numbers[i];
+                }
+                show(numbers);
+                Ave10 = total/10
+                console.log('平均値は' + Ave10 + 'です');
+            }
 
             //prac3-3 10個の乱数の最大値を求める
-            var tmp = -1;
-            for(var i=0; i<10; i++){
-                if(numbers[i] > tmp){
-                    tmp = numbers[i];
-                }
-                else{
-                    ;
-                }
+            function MaxOf10(){
+                var numbers = [];
+                var tmp = -1;
+                createRandomNumbers(numbers,10);
+                    for(var i=0; i<10; i++){
+                        if(numbers[i] > tmp){
+                        tmp = numbers[i];
+                        }
+                        else{
+                        ;
+                    }
             }
-            console.log('最大値は' + tmp + 'です');
+            show(numbers);
+            console.log('最大値は' + tmp + 'です。')
+        }
 
             //prac3-4 10個の乱数の最小値を求める
-            tmp = 11;
+            function Minimum10(){
+            var numbers = [];
+            var tmp = 11;
+            createRandomNumbers(numbers,10);
             for(var i=0; i<numbers.length; i++){
                 if(numbers[i] < tmp){
                     tmp = numbers[i];
@@ -45,44 +71,50 @@
                 console.log('最小値は' + tmp + 'です');
             }
         }
+
         function search() {
+
+            var Numbers = [];
             document.getElementById('Current').innerHTML = 'バイナリーサーチがスタートしました';
 
                 //nをユーザーから入力してもらう
                 //nをバイナリーサーチ方式で探す
 
-                //1.ソートされたリストを用意する。
-                var search1 = [];
-                //2.検索する値を取得する。
-                var n = document.getElementById('SearchText').value
-                //3.検索範囲を初期化する。最初に検索する範囲はリスト全体とする。
-                var a;
-                for (var i = 1; i <= search1.length; i++) {
-                    a = a + i;
-                    console.log(a);
+                //1.ソートされたリストを用意する
+
+                for(var i=1; i<=20; i++){
+                    Numbers.push(i);
+                }
+
+               var Numbers = [];
+               var Center = 10;
+               var SearchNumber = document.getElementById('SearchText').value;
+               for(var i=1; i<=20; i++){
+                Numbers.push(i);
+               }
+               if (SearchNumber == Center) {
+                document.getElementById('result').innerHTML = "インデックス" + Numbers[Center] + "にあります。"
             }
 
-                //8.検索範囲が存在しなくなるまで、手順4-7を繰り返す。
-                //while?
-                //4.検索範囲の中央の要素を取得する。
-                var b = a/2;
-                //5.取得した中央の要素が検索値と等しい場合、探索完了としてその要素のインデックスを返す。
-                if(b == n){
-                    document.getElementById('result').innerHTML = search[b];//?
-                }
-                //6.取得した中央の要素が検索値より小さい場合、検索範囲を中央より右側の部分に縮小する。
-                else if(b < n){
-                    //?
-                }
-                //7.取得した中央の要素が検索値より大きい場合、検索範囲を中央より左側の部分に縮小する。
-                else if(b > n){
-                    //?
-                }
-                //9.要素が見つからなかった場合は、探索終了としてnullを返す。
-                else if(a){ //?
-                document.getElementById('result').innerHTML = 'null';
-                }
+               if(SearchNumber > Center){
+               for(var a=1; a<=20-Center; a++){
+               Numbers.shift();
+               }
+               show(Numbers);
+               Center = Math.round(Center + Center / 2);
             }
+
+              if(SearchNumber < Center){
+                for(var b=1; b<=20-Center; b++){
+                    Numbers.pop();
+                }
+                Center = Math.round(Center - Center / 2);
+              }
+              document.getElementById('result').innerHTML = "インデックス" + (Center-1) + "にあります。";
+              show(Numbers);
+              //なかった時にnullを返すのがわからない
+              //繰り返しを続けるのはwhile?どんな感じの条件式になるのか
+                }
     </script>
 
 </head>
@@ -91,10 +123,17 @@
     <h1>prac3</h1>
     <button onclick="runButtonPressed()">run!</button>
     <p id="res"></p>
-    <input id="SearchText" type="text">
-    <button onclick="search()">決定</button>
-    <p id="Current">バイナリーサーチ未完了</p>
-    <p id="result">まだ見つかっていません</p>
+
+    <p>結果はコンソールに表示されます。</p>
+    <button onclick="Total10()">合計値を求める</button><br>
+    <button onclick="Ave10()">平均値を求める</button><br>
+    <button onclick="MaxOf10()">最大値を求める</button><br>
+    <button onclick="Minimum10()">最小値を求める</button><br>
+    <p></p>
+    <input type="text" id="SearchText">
+    <button onclick="search()">バイナリーサーチを行う</button>
+    <p id="Current"></p>
+    <p id="result">結果</p>
 </body>
 
 </html>
