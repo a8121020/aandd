@@ -10,26 +10,26 @@
 
     <script>
         function runButtonPressed() {
-        var numbers = [];
-        //createSequentialNumbers(numbers, 10);
-        createRandomNumbers(numbers,10);
+            var numbers = [];
+            //createSequentialNumbers(numbers, 10);
+            createRandomNumbers(numbers, 10);
             //prac1-7 1からNまでの数を順にN個挿入する関数を作る
             //関数名：createSequentialNumbers(array, n)
             //できたら，関数定義をaandd.jsに移す
 
-            function createSequentialNumbers(array,n){
-                    for(var i=1; i<=n; i++){
+            function createSequentialNumbers(array, n) {
+                for (var i = 1; i <= n; i++) {
                     (array.push(i)) * i;
                     console.log(array);
-                    }
-                    show(array);
                 }
+                show(array);
+            }
             //prac1-8 N個の乱数を挿入する関数を作る
             //関数名：createRandomNumbers(array, n)
             //できたら，関数定義をaandd.jsに移す
 
-            function createRandomNumbers(array,n){
-                for(var i=0; i<n; i++){
+            function createRandomNumbers(array, n) {
+                for (var i = 1; i <= n; i++) {
                     array.push(Math.floor(Math.random() * 10) + 1);
                     console.log(array);
                 }

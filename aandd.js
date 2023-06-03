@@ -8,7 +8,7 @@ function createSequentialNumbers(array,n){
 
 var random1;
         function createRandomNumbers(array,n){
-                for(var i=0; i<=n; i++){
+                for(var i=0; i<n; i++){
                     array.push(random1);
                     console.log(array);
                     random1 = Math.floor(Math.random() * 10 + 1);
