@@ -31,8 +31,20 @@
         */
 
         //バブルソート
-        /*
         function Once() {
+            SelectionSort();
+        }
+
+        /*
+        function UntilTheEnd() {
+            for (var i = 0; i < numbers.length; i++) {
+                Once();
+            }
+        }
+        */
+
+        //選択ソート
+        function bubble() {
             var tmp;
             for (var i = 0; i < numbers.length; i++) {
                 if (numbers[i] > numbers[i + 1]) {
@@ -44,35 +56,25 @@
             show(numbers);
         }
 
-        //
-        function UntilTheEnd() {
-            for (var i = 0; i < numbers.length; i++) {
-                Once();
-            }
-        }
-        */
-
-        //選択ソート
-
         //最小値を探すプログラム
-        function SearchMin() {
+        var lower = 0;
+        function SelectionSort() {
             var Min = 101;
             var tmp;
             var Index;
-            for (var i = 0; i < numbers.length; i++) {
-                if (numbers[i] < Min) { //もしインデックスiの値がMinより小さければ
-                    Min = numbers[i]; //Minを見つけた数に書き換える
-                    Index = i; //最小値があったインデックスを記録
+            for (var i = lower; i < numbers.length; i++) {
+                if (numbers[i] < Min) { //もし見つけた値が現段階の最小値より小さければ
+                    Min = numbers[i]; //最小値を見つけた数に書き換える
+                    Index = i; //最小値があったインデックス(場所)を記録
                 }
             }
             show(Min);
             show(numbers);
             tmp = numbers[lower]; //tmpにnumbers[lower]の値を代入
-            numbers[lower] = numbers[Index]; //
-            numbers[Index] = tmp;
-            lower++;
+            numbers[lower] = numbers[Index]; //左端の値を最小値と同じにする
+            numbers[Index] = tmp; //最小値があった場所に左端にあった値を持ってくる
+            lower++; //左端(lower)は入れ替えが終わったら1つ右に詰める
         }
-        //見つけた最小値をnumbers[lower]に持っていく
 
     </script>
 
