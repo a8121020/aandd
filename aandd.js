@@ -1,17 +1,16 @@
 function createSequentialNumbers(array,n){
-                    for(var i=0; i<=n; i++){
-                    array.push(i + 1);
+                    for(var i=1; i<=n; i++){
+                    array.push(i)*i;
                     console.log(array);
                     }
                 }
 
 
-var random1;
         function createRandomNumbers(array,n){
                 for(var i=0; i<n; i++){
+                    var random1 = Math.floor(Math.random()*10 + 1)
                     array.push(random1);
                     console.log(array);
-                    random1 = Math.floor(Math.random() * 10 + 1);
                 }
             }
 
