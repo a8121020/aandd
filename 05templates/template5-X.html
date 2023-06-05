@@ -64,16 +64,15 @@
                     Min = numbers[i]; //Minを見つけた数に書き換える
                     Index = i; //最小値があったインデックスを記録
                 }
-                show(Min);
             }
+            show(Min);
             show(numbers);
+            tmp = numbers[lower]; //tmpにnumbers[lower]の値を代入
+            numbers[lower] = numbers[Index]; //
+            numbers[Index] = tmp;
+            lower++;
         }
         //見つけた最小値をnumbers[lower]に持っていく
-        /*
-        tmp = numbers[i]; //tmpにnumbers[i]の値を代入
-                numbers[i] = numbers[Index]; //
-                numbers[Index] = tmp;
-        */
 
     </script>
 
