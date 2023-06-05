@@ -11,15 +11,12 @@
     <script>
         var numbers = [];
 
-
-        create(2);
-
-        create()
-        function create(HowMany) {
+        function create() {
             createRandomNumbers(numbers, 20);
             show(numbers)
         }
 
+        /*
         function runButtonPressed() {
             var startTime = new Date();
             //処理
@@ -31,7 +28,10 @@
             show(time + 'ミリ秒');
             show(numbers);
         }
+        */
 
+        //バブルソート
+        /*
         function Once() {
             var tmp;
             for (var i = 0; i < numbers.length; i++) {
@@ -39,9 +39,6 @@
                     tmp = numbers[i];
                     numbers[i] = numbers[i + 1];
                     numbers[i + 1] = tmp;
-                }
-                else if (numbers[i] < numbers[i + 1]) {
-                    ;
                 }
             }
             show(numbers);
@@ -53,7 +50,30 @@
                 Once();
             }
         }
+        */
 
+        //選択ソート
+
+        //最小値を探すプログラム
+        function SearchMin() {
+            var Min = 101;
+            var tmp;
+            var Index;
+            for (var i = 0; i < numbers.length; i++) {
+                if (numbers[i] < Min) { //もしインデックスiの値がMinより小さければ
+                    Min = numbers[i]; //Minを見つけた数に書き換える
+                    Index = i; //最小値があったインデックスを記録
+                }
+                show(Min);
+            }
+            show(numbers);
+        }
+        //見つけた最小値をnumbers[lower]に持っていく
+        /*
+        tmp = numbers[i]; //tmpにnumbers[i]の値を代入
+                numbers[i] = numbers[Index]; //
+                numbers[Index] = tmp;
+        */
 
     </script>
 
@@ -64,8 +84,8 @@
     <button onclick="create()">テーブルを作る</button>
     <button onclick="Once()">1回だけ行う</button>
     <button onclick="UntilTheEnd()">終わるまで行う</button>
-    <p id="res"></p>
     <button onclick="runButtonPressed()">run!</button>
+    <p id="res"></p>
 </body>
 
 </html>
