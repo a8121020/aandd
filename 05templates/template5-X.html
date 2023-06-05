@@ -32,7 +32,9 @@
 
         //バブルソート
         function Once() {
-            SelectionSort();
+            //bubble();
+            //SelectionSort();
+            InsertionSort();
         }
 
         /*
@@ -74,6 +76,9 @@
             numbers[lower] = numbers[Index]; //左端の値を最小値と同じにする
             numbers[Index] = tmp; //最小値があった場所に左端にあった値を持ってくる
             lower++; //左端(lower)は入れ替えが終わったら1つ右に詰める
+        }
+
+        function InsertionSort() {
         }
 
     </script>
