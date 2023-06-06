@@ -13,7 +13,58 @@
 
     <script>
 
-        var nouns;
+        //
+        var x;
+        function runButtonPressed() {
+            var text = "トマト";
+            //reversedText(text);
+            x = reversedText(text);
+            console.log(x);
+            //ひっくり返した文章を表示
+            checkPalindrome(text);
+        }
+
+        function reversedText(text) {
+            var list1 = [];
+
+            //var text = document.getElementById('tf1').value;
+            show(text);//取り出した文字列を表示
+
+            var chars = text.split('');//一文字ずつ分割する
+            show(chars); //1文字ずつ分割したリストを表示
+
+            //list1.push(chars);
+            //後ろからリストの要素を取り出す
+            //list1.push(chars);
+
+            for (var i = 0; i < text.length; i++) {
+                console.log(chars);
+                list1.push(chars.pop());
+            }
+            show(list1);
+            //return list1;
+            var text2 = list1.join('');//連結したものを表示
+            show(text2);
+            return text2;
+        }
+
+        function checkPalindrome(text) {
+            //textは通常の文字列
+
+            if (text == x) {
+                console.log('true');
+            }
+            else {
+                console.log('false');
+            }
+            /*for (var i = 0; i < text.length; i++) {
+                list2.push(list1.pop());
+            }
+            show(list2);
+            */
+        }
+
+        /*var nouns;
 
         $(document).ready(function () {
             nouns = nounstext.split('\n');
@@ -28,7 +79,8 @@
             var size = array.length;
             var index = Math.floor(Math.random() * size);
             return array[index];
-        }
+        }*/
+
 
     </script>
 

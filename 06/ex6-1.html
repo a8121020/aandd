@@ -12,7 +12,7 @@
         function runButtonPressed() {
             var text = document.getElementById('tf1').value;
             show(text);
-            var chars = text.split('');
+            var chars = text.split('');//一文字ずつ分割する
             show(chars);
             var text2 = chars.join('');
             show(text2);
