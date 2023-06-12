@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script type="text/javascript" src="../aandd.js"></script>
+    <script type="text/javascript" src="../jquery.min.js"></script>
+
+    <script type="text/javascript" src="nouns.js"></script>
+    <script type="text/javascript" src="verbs.js"></script>
+
+    <script>
+
+        //
+        // var x;
+        // function runButtonPressed() {
+
+        // }
+
+        // function reversedText(text) {
+        //     var list1 = [];
+
+        //     //var text = document.getElementById('tf1').value;
+        //     show(text);//取り出した文字列を表示
+
+        //     var chars = text.split('');//一文字ずつ分割する
+        //     show(chars); //1文字ずつ分割したリストを表示
+
+        //     //list1.push(chars);
+        //     //後ろからリストの要素を取り出す
+        //     //list1.push(chars);
+
+        //     for (var i = 0; i < text.length; i++) {
+        //         console.log(chars);
+        //         list1.push(chars.pop());
+        //     }
+        //     show(list1);
+        //     //return list1;
+        //     var text2 = list1.join('');//連結したものを表示
+        //     show(text2);
+        //     return text2;
+        // }
+
+        // function checkPalindrome(text) {
+        //     //textは通常の文字列
+
+        //     if (text == x) {
+        //         console.log('true');
+        //     }
+        //     else {
+        //         console.log('false');
+        //     }
+        //     /*for (var i = 0; i < text.length; i++) {
+        //         list2.push(list1.pop());
+        //     }
+        //     show(list2);
+        //     */
+        // }
+
+
+
+        var nouns;
+
+        $(document).ready(function () {
+            nouns = nounstext.split('\n');
+        });
+
+        var verbs;
+
+        $(document).ready(function () {
+            verbs = nounstext.split('\n');
+        });
+
+        var x;
+        function runButtonPressed() {
+            for (var j = 0; j < 6; j++) {
+                x = MakeSentence();
+                //できた文をリストに入れて分解した後に逆にする
+
+                var chars = x.split('');
+                //show(chars);
+                var list2 = [];
+
+                for (var i = 0; i < x.length; i++) {
+                    list2.push(chars.pop());
+                }
+
+                show(list2);
+                var text2 = list2.join('');
+                show(text2);
+
+                if (x == text2) {
+                    console.log(x);
+                    console.log(text2);
+                    document.getElementById('res').innerHTML = '生成した文は回文です';
+                    document.getElementById('sentence').innerHTML = x;
+                }
+                else {
+                    console.log(x);
+                    console.log(text2);
+                    document.getElementById('res').innerHTML = '生成した文は回文ではありません';
+                }
+            }
+        }
+
+        function selectone(array) {
+            var size = array.length;
+            var index = Math.floor(Math.random() * size);
+            return array[index];
+        }
+
+        //生成した文が回文になるまで繰り返しを行うプログラム
+        function MakeSentence() {
+            var noun = selectone(nouns);
+            show(noun);
+            var verb = selectone(verbs);
+            show(verb);
+            var sentence = noun + 'は' + verb + 'です';
+            show(sentence);
+            return sentence;
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <h1>読み込み，選ぶ</h1>
+    <button onclick="runButtonPressed()">run!</button>
+    <p id="res"></p>
+    <p id="Sentence"></p>
+
+</body>
+
+</html>
