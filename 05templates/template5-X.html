@@ -79,6 +79,19 @@
         }
 
         function InsertionSort() {
+            //39612
+            var list1 = [9, 3, 6, 1, 2]
+            //var x = list1[0];
+            var tmp;
+            //一番左と左から2番目を比較する
+            //for (var i = 0; i < list1.length; i++) {
+            if (list1[0] > list1[1]) {
+                tmp = list1[0]; //9
+                list1[0] = list1[1]; //3,3
+                list1[1] = tmp;
+            }
+            show(list1);
+            //}
         }
 
     </script>
