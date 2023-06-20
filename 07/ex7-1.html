@@ -9,14 +9,18 @@
     <script type="text/javascript" src="../jquery.min.js"></script>
 
     <script>
-        var fruits = {};
+        // var fruits = {};
 
-        $().ready(function () {
-            fruits['apple'] = 'りんご';
-            fruits['orange'] = 'みかん';
-        });
+        // $().ready(function () {
+        //     fruits['apple'] = 'りんご';
+        //     fruits['orange'] = 'みかん';
+        // });
 
         function registerButtonPressed() {
+            var English = document.getElementById('tf3').value;
+            var Japanese = document.getElementById('tf4').value;
+            fruits[English] = Japanese;
+            console.log(fruits);
         }
 
         function runButtonPressed() {
@@ -25,6 +29,37 @@
             document.getElementById('tf2').value = japanese;
         }
 
+        var GPT = {};
+        var GPT2 = [];
+
+        $().ready(function () {
+            GPT['こんにちは'] = 'こんにちは';
+            GPT['おはようございます'] = 'おはようございます';
+            GPT['元気ですか'] = '元気ですよ';
+        });
+        var x;
+        function GPTSAN() {
+            x = document.getElementById('GPT-SAN').value;
+            console.log(x);
+            //もしユーザーが入れた言葉が連想配列の中になかった場合;
+            // GPT2 = GPT;
+            // console.log(GPT[0]);
+            // console.log(GPT[1]);
+            if (GPT[x] == undefined) { //もしリストにユーザーが入力した単語がなかったら
+                document.getElementById('result-GPT').innerHTML = '見つかりませんでした。' + x + 'と聞かれてどう返せば良いか教えてください。';
+            }
+
+            else {
+                document.getElementById('result-GPT').innerHTML = GPT[x];
+            }
+        }
+
+        function register() {
+            var y = document.getElementById('MyVocab').value;
+            GPT[x] = y;
+            console.log(GPT);
+            document.getElementById('result-GPT').innerHTML = '登録したよ。賢くなった。';
+        }
     </script>
 
 </head>
@@ -41,6 +76,11 @@
     日本語：<input id="tf2" type="text" value="">
     <button onclick="runButtonPressed()">検索!</button>
     <p id="res"></p>
+    <input id="GPT-SAN" type="text" value="">
+    <button onclick="GPTSAN()">GPTと話す</button>
+    <h1 id="result-GPT"></h1>
+    <input id="MyVocab" type="text" value="返し方を">
+    <button onclick="register()">返し方を登録</button>
 </body>
 
 </html>

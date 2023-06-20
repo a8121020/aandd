@@ -1,11 +1,35 @@
+
 var osql = {};
 
-osql.db = 'db2021';
-osql.via = null;
+//osql.baseurl = '';
 osql.baseurl = 'https://dbkiso.si.aoyama.ac.jp';
+osql.db = 'db2023';
+osql.via = null;
+
+/** ************************ */
+
+osql.version = '2.0.3';
+
+/***
+ * osql.js 
+ * 　oursql　APIにアクセスするためのjsライブラリ
+ * 
+ * version2.0.0　2023.06.17 
+ * ・今までのosql.jsを統合
+ * ・バージョン追加
+ * ・ファイルアップロード機能に対応
+ * version2.0.1　2023.06.17 
+ * ・autoobjectに対応
+ * version2.0.2&3　2023.06.17 
+ * ・ファイルアップロード機能修正
+ * ・getHistoryのコードをクリーンに
+ * 
+ ***/
+
 osql.url = osql.baseurl + '/oursql2/api/index.php';
-osql.historyurl = osql.baseurl + '/oursql2/api/history.php';
 osql.meurl = osql.baseurl + '/oursql2/api/me.php';
+osql.uploadurl = osql.baseurl + '/oursql2/api/fileupload.php';
+osql.historyurl = osql.baseurl + '/oursql2/api/history.php';
 
 osql.requireLogin = function () {
     var token;
@@ -28,12 +52,12 @@ osql.requireLogin = function () {
 };
 
 osql.login = function (userid, password, success, failure) {
-    osql.goto(osql.baseurl + '/oursql2/oauth/login.php?referer=' + document.URL);
+    osql.goto(osql.baseurl + '/oursql2/oauth/login.php?referer=' + encodeURIComponent(document.URL));
 };
 
 osql.logout = function () {
     localStorage.removeItem('access-token');
-    osql.goto(osql.baseurl + '/oursql2/oauth/logout.php?referer=' + document.URL);
+    osql.goto(osql.baseurl + '/oursql2/oauth/logout.php?referer=' + encodeURIComponent(document.URL));
 };
 
 osql.goto = function (url) {
@@ -55,23 +79,66 @@ osql.back = function (defaulturl) {
     }
 };
 
-osql.connect = function (sql) {
+osql.connect = async function (sql, autoobject = true) {
+    if (Array.isArray(sql)) {
+        var sqls = [];
+        sql.forEach(function (each) {
+            sqls.push(each.replace(/\\/g, '\\\\'));
+        });
+        sql = JSON.stringify(sqls);
+    } else {
+        sql = sql.replace(/\\/g, '\\\\');
+    }
     var query = {};
     query.db = osql.db;
     query.sql = sql;
     query.via = osql.via;
-    return osql.connectImpl(query, osql.url);
+    var res = await osql.connectImpl(query);
+    if (autoobject && res.objects) {
+        return res.objects;
+    }
+    return res;
 }
 
-osql.getMe = function () {
+osql.connectInsert = async function (sql) {
+    var sqls = [];
+    sqls.push(sql);
+    sqls.push('select LAST_INSERT_ID() as lastId;');
+    var obj = await osql.connect(sqls);
+    return obj[0].lastId;
+}
+
+osql.getMe = async function () {
     var query = {};
-    return osql.connectImpl(query, osql.meurl);
+    var res = await osql.connectImpl(query, osql.meurl);
+    if (res.user) {
+        var user = res.user;
+        var studentid = user.id.split('@')[0];
+        studentid = '1' + studentid.substring(1, 8);
+        user.studentid = studentid;
+        return res.user;
+    } else {
+        return null;
+    }
+}
+
+osql.getHistory = async function () {
+    var query = {};
+    var res = await osql.connectImpl(query, osql.historyurl);
+    if (res.histories) {
+        return res.histories;
+    } else {
+        return null;
+    }
 }
 
 osql.connectImpl = function (query, url) {
     var token = localStorage.getItem('access-token');
     if (token) {
         query['access-token'] = token;
+    }
+    if (!url) {
+        url = osql.url;
     }
     return new Promise(function (resolve) {
         $.post(url, query, function (data) {
@@ -80,29 +147,50 @@ osql.connectImpl = function (query, url) {
                 if (res.status != 200) {
                     if (res.status === 401) {//no token
                         osql.requireLogin();
+                        //die;
                     }
-                    if (failure) {
-                        failure(res);
-                    } else {
-                        console.error('Error in osql.connect() \n sql:' + sql + '\n data: ' + data);
-                    }
-                    return;
+                    console.error('Error in osql.connect() \n sql:' + query.sql + '\n data: ' + data);
                 }
-                if (res.objects) {
-                    resolve(res.objects);
-                } else if (res.user) {
-                    var user = res.user;
-                    var studentid = user.id.split('@')[0];
-                    studentid = '1' + studentid.substring(1, 8);
-                    user.studentid = studentid;
-                    resolve(res.user);
-                } else {
-                    resolve(res);
-                }
+                resolve(res);
             } catch (ex) {
                 console.error('Error in osql.connect() \n sql:' + query.sql + '\n data: ' + data);
                 console.error(ex);
+                resolve({});
             }
+        })
+    });
+}
+
+osql.uploadFile = function (object, appname, progress) {
+    if (!appname) {
+        appname = osql.db;
+    }
+    if (!progress) {
+        progress = function (t) { console.log(t) };
+    }
+    var url = `${osql.uploadurl}?appname=${appname}`;
+    var token = localStorage.getItem('access-token');
+    if (token) {
+        url = url + `&access-token=${token}`;
+    }
+    var query = {
+        xhr: function () {
+            var xhr = new window.XMLHttpRequest();
+            xhr.upload.addEventListener("progress", progress, false);
+            return xhr;
+        },
+        url: url,
+        type: 'POST',
+        data: object,
+        processData: false, // dataをクエリ文字列に変換しない
+        contentType: false, // リクエストのContent-Typeを指定しない
+    }
+    return new Promise(function (resolve) {
+        $.ajax(query).done(function (data) {
+            var obj = JSON.parse(data);
+            resolve(obj);
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            resolve(false);
         })
     });
 }
@@ -137,6 +225,4 @@ osql.getCookies = function () {
     }
     return cookies;
 }
-
-
 

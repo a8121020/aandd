@@ -74,34 +74,39 @@
         });
 
         var x;
-        function runButtonPressed() {
-            for (var j = 0; j < 6; j++) {
-                x = MakeSentence();
-                //できた文をリストに入れて分解した後に逆にする
+        function Once() {
 
-                var chars = x.split('');
-                //show(chars);
-                var list2 = [];
+            x = MakeSentence();
+            //できた文をリストに入れて分解した後に逆にする
 
-                for (var i = 0; i < x.length; i++) {
-                    list2.push(chars.pop());
-                }
+            var chars = x.split('');
+            //show(chars);
+            var list2 = [];
 
-                show(list2);
-                var text2 = list2.join('');
-                show(text2);
+            for (var i = 0; i < x.length; i++) {
+                list2.push(chars.pop());
+            }
 
-                if (x == text2) {
-                    console.log(x);
-                    console.log(text2);
-                    document.getElementById('res').innerHTML = '生成した文は回文です';
-                    document.getElementById('sentence').innerHTML = x;
-                }
-                else {
-                    console.log(x);
-                    console.log(text2);
-                    document.getElementById('res').innerHTML = '生成した文は回文ではありません';
-                }
+            show(list2);
+            var text2 = list2.join('');
+            show(text2);
+
+            if (x == text2) {
+                console.log(x);
+                console.log(text2);
+                document.getElementById('res').innerHTML = '生成した文は回文です';
+                document.getElementById('sentence').innerHTML = x;
+            }
+            else {
+                console.log(x);
+                console.log(text2);
+                document.getElementById('res').innerHTML = '生成した文は回文ではありません';
+            }
+        }
+
+        function Hundred() {
+            for (var i = 0; i < 101; i++) {
+                Once();
             }
         }
 
@@ -128,7 +133,8 @@
 
 <body>
     <h1>読み込み，選ぶ</h1>
-    <button onclick="runButtonPressed()">run!</button>
+    <button onclick="Once()">1回</button>
+    <button onclick="Hundred()">100回</button>
     <p id="res"></p>
     <p id="Sentence"></p>
 

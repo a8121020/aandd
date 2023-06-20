@@ -34,7 +34,7 @@
         function Once() {
             //bubble();
             //SelectionSort();
-            InsertionSort();
+            InsertionSort(numbers);
         }
 
         /*
@@ -78,20 +78,33 @@
             lower++; //左端(lower)は入れ替えが終わったら1つ右に詰める
         }
 
-        function InsertionSort() {
-            //39612
-            var list1 = [9, 3, 6, 1, 2]
-            //var x = list1[0];
+        function InsertionSort(array) {
+            //一番最初をソート済みにする
+            // var numbers1 = [4, 3, 5, 1];
+            // var x = numbers1[0];
+            // var max = 0;
+            // var maxMinus = max - 1;
+            // for (var i = 0; i < numbers1.length; i++) {
+            //     max = max + 1;
+            //     console.log(max);
+            //     console.log('maxMinus' + maxMinus);
+            // }
             var tmp;
-            //一番左と左から2番目を比較する
-            //for (var i = 0; i < list1.length; i++) {
-            if (list1[0] > list1[1]) {
-                tmp = list1[0]; //9
-                list1[0] = list1[1]; //3,3
-                list1[1] = tmp;
+            for (var i = 0; i < array.length; i++) {
+                var SortOne = array[i];//1番左側をソート済みとする
+                var j = i - 1; //ｊはインデックスのこと
+
+                while (j >= 0 && array[j] > SortOne) { //インデックスが0以上、かつ　
+                    //取り出した値が毎繰り返しの一番左の値よりも大きかった場合
+                    // tmp = array[j];
+                    array[j + 1] = array[j];
+                    // array[j + 1] = tmp;
+                    j--;
+                }
+
+                array[j + 1] = SortOne;
             }
-            show(list1);
-            //}
+            show(array);
         }
 
     </script>
