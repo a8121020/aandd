@@ -57,22 +57,41 @@
             //     console.log(objects.gender);
             // };
             var total1 = 0;
-            var man;
-            var total2;
-            var woman;
+            //total = Number(total1);
+            var man = 0;
+            man = Number(man);
+            var total2 = 0;
+            //total2 = Number(total2);
+            var woman = 0;
+            woman = Number(woman);
             //配列の中にobjects.genderの
             for (var i = 0; i < objects.length; i++) {
-                if (objects.gender == 'm') {
-                    total1 = total1 + Number(objects.height[i]);
+                var object = objects[i];
+                if (object.gender == 'm') {
+                    total1 = total1 + Number(object.height);
                     man = man + 1;
+                }
+                else {
+                    total2 = total2 + Number(object.height);
+                    woman = woman + 1;
                 }
             }
             console.log(total1);
+            console.log(man);
+            console.log('男性の平均身長は' + (total1 / man) + 'cmです');
+            console.log('女性の平均身長は' + (total2 / woman) + 'cmです');
+
+            for (var i = 0; i < objects.length; i++) {
+                var object = objects[i];
+                console.log(object.name + object.birthday);
+            }
         }
 
         // async function ObjectsWoman() {
         //     var objects2 = await osql.connect(`select height from Students where gender = 'f'`)
         // }
+
+        //名前と誕生日
     </script>
 
 </head>
