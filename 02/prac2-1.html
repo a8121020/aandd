@@ -9,48 +9,46 @@
     <script type="text/javascript" src="../jquery.min.js"></script>
 
     <script>
-        var numbers = [];
         function runButtonPressed() {
+            var numbers = [];
             //prac2-1 10個の順数（１，２，３．．．の数列）を生成し，２番目と４番目を入れ替える
-            for(var i=0; i<10; i++){
+            for (var i = 1; i <= 10; i++) {
                 numbers.push(i);
             }
-            tmp =  numbers[1];
+            var tmp = numbers[1];
             numbers[1] = numbers[3];
             numbers[3] = tmp;
-            console.log(numbers);
             show(numbers);
-            
-            //prac2-2 10個の順数を生成し，n番目とm番目を入れ替える
 
-            for(var i=0; i<10; i++){
+            //prac2-2 10個の順数を生成し，n番目とm番目を入れ替える
+            //(nとmは乱数にて決定する)
+
+            for (var i = 1; i <= 10; i++) {
                 numbers.push(i);
             }
-            var n = Math.floor(Math.random()*10);
-            var m = Math.floor(Math.random() * 10);
-            document.getElementById("ndayo").innerHTML = n;
-            document.getElementById("mdayo").innerHTML = m;
+            var n = Math.floor(Math.random() * 10) + 1; //1から10
+            var m = Math.floor(Math.random() * 10) + 1;
+            console.log('nの値:' + n);
+            console.log('mの値:' + m);
 
-            tmp = numbers[n];
-            numbers[n] = numbers[m];
-            numbers[m] = tmp;
-            console.log(numbers);
+            var tmp = numbers[n - 1];
+            numbers[n - 1] = numbers[m - 1];
+            numbers[m - 1] = tmp;
             show(numbers);
 
-            //(nとmは乱数にて決定する)
-            
             //prac2-3 prac2-2を20回繰り返す（シャッフルプログラムの完成）
-            for(var j=0; j<20; j++){
-                for (var i = 0; i < 10; i++) {
+            for (var j = 1; j <= 20; j++) {
+                for (var i = 1; i <= 10; i++) {
                     numbers.push(i);
                 }
-                var n = Math.floor(Math.random() * 10);
-                var m = Math.floor(Math.random() * 10);
+                var n = Math.floor(Math.random() * 10) + 1; //1から10
+                var m = Math.floor(Math.random() * 10) + 1;
+                console.log('nの値:' + n);
+                console.log('mの値:' + m);
 
-                tmp = numbers[n];
-                numbers[n] = numbers[m];
-                numbers[m] = tmp;
-                console.log(numbers);
+                var tmp = numbers[n - 1];
+                numbers[n - 1] = numbers[m - 1];
+                numbers[m - 1] = tmp;
                 show(numbers);
             }
         }
@@ -62,8 +60,6 @@
     <h1>prac2</h1>
     <button onclick="runButtonPressed()">run!</button>
     <p id="res"></p>
-    nの値;<p id="ndayo">ここに表示されます</p>
-    mの値;<p id="mdayo">ここに表示されます</p>
 </body>
 
 </html>

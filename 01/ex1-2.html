@@ -9,8 +9,8 @@
     <script type="text/javascript" src="../jquery.min.js"></script>
 
     <script>
+        var numbers = [];
         function runButtonPressed() {
-            var numbers = [];
             numbers.push(13);
             numbers.push(8);
             numbers.push(21);
@@ -18,8 +18,9 @@
             show(numbers);
             numbers[2] = 100;//２番目を書き換える
             //=は代入を意味する
+            show(numbers);
+
         }
-        show(numbers);
     </script>
 
 </head>

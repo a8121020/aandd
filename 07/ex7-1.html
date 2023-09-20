@@ -39,11 +39,6 @@
         var x;
         function GPTSAN() {
             x = document.getElementById('GPT-SAN').value;
-            console.log(x);
-            //もしユーザーが入れた言葉が連想配列の中になかった場合;
-            // GPT2 = GPT;
-            // console.log(GPT[0]);
-            // console.log(GPT[1]);
             if (GPT[x] == undefined) { //もしリストにユーザーが入力した単語がなかったら
                 document.getElementById('result-GPT').innerHTML = '見つかりませんでした。' + x + 'と聞かれてどう返せば良いか教えてください。';
             }
@@ -56,7 +51,6 @@
         function register() {
             var y = document.getElementById('MyVocab').value;
             GPT[x] = y;
-            console.log(GPT);
             document.getElementById('result-GPT').innerHTML = '登録したよ。賢くなった。';
         }
     </script>

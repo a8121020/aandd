@@ -10,111 +10,52 @@
 
     <script>
         var total = 0;
+        var numbers = [];
 
         function runButtonPressed() {
-            search(20);
-        }
-
             //prac3-1 10個の乱数の合計を求める（繰り返しで）
-            function Total10(){
-                 var numbers = [];
-                createRandomNumbers(numbers, 10);
-                for(var i=0; i<10; i++){
-                    total = total + numbers[i];
-                    }
-            show(numbers);
-            console.log('合計値は' + total + 'です。')
+            for (var i = 0; i < 10; i++) {
+                numbers.push(Math.floor(Math.random() * 50)) + 1;
+                total = total + numbers[i];
             }
+            show(numbers);
+            console.log(total);
 
             //prac3-2 10個の乱数の平均を求める
-            function Ave10(){
-                var numbers = [];
-                var Ave10;
-                createRandomNumbers(numbers,10);
-                for(var i=0; i<10; i++){
-                    total = total + numbers[i];
-                }
-                show(numbers);
-                Ave10 = total/10
-                console.log('平均値は' + Ave10 + 'です');
-            }
+            console.log(total / i);
 
             //prac3-3 10個の乱数の最大値を求める
-            function MaxOf10(){
-                var numbers = [];
-                var tmp = -1;
-                createRandomNumbers(numbers,10);
-                    for(var i=0; i<10; i++){
-                        if(numbers[i] > tmp){
-                        tmp = numbers[i];
-                        }
-                        else{
-                        ;
-                    }
+            var tmpMax = numbers[0];
+            for (var i = 0; i <= 10; i++) {
+                if (tmpMax < numbers[i + 1]) {
+                    console.log('tmp入れ替わる:' + tmpMax + 'と' + numbers[i + 1] + 'が入れ替わります');
+                    tmpMax = numbers[i + 1];
+                }
             }
-            show(numbers);
-            console.log('最大値は' + tmp + 'です。')
-        }
+            /*分かったこと: tmp = numbers[i]と表記することで、見比べるプログラムを書こうとしたが、それだと
+            if文が機能しないことが分かった。
+            */
+            console.log('最大値:' + tmpMax);
 
             //prac3-4 10個の乱数の最小値を求める
-            function Minimum10(){
-            var numbers = [];
-            var tmp = 11;
-            createRandomNumbers(numbers,10);
-            for(var i=0; i<numbers.length; i++){
-                if(numbers[i] < tmp){
-                    tmp = numbers[i];
+            var tmpMin = numbers[0];
+            for (var i = 0; i <= 10; i++) {
+                if (tmpMin > numbers[i + 1]) {
+                    console.log('tmp入れ替わる:' + tmpMin + 'と' + numbers[i + 1] + 'が入れ替わります');
+                    tmpMin = numbers[i + 1];
                 }
-                else{
-                    ;
-                }
-                console.log('最小値は' + tmp + 'です');
             }
+            console.log('最小値:' + tmpMin);
         }
 
+
         function search() {
-
             var Numbers = [];
-            document.getElementById('Current').innerHTML = 'バイナリーサーチがスタートしました';
-
-                //nをユーザーから入力してもらう
-                //nをバイナリーサーチ方式で探す
-
-                //1.ソートされたリストを用意する
-
-                for(var i=1; i<=20; i++){
-                    Numbers.push(i);
-                }
-
-               var Numbers = [];
-               var Center = 10;
-               var SearchNumber = document.getElementById('SearchText').value;
-               for(var i=1; i<=20; i++){
+            for (var i = 1; i <= 9; i++) {
                 Numbers.push(i);
-               }
-               if (SearchNumber == Center) {
-                document.getElementById('result').innerHTML = "インデックス" + Numbers[Center] + "にあります。"
             }
-
-               if(SearchNumber > Center){
-               for(var a=1; a<=20-Center; a++){
-               Numbers.shift();
-               }
-               show(Numbers);
-               Center = Math.round(Center + Center / 2);
-            }
-
-              if(SearchNumber < Center){
-                for(var b=1; b<=20-Center; b++){
-                    Numbers.pop();
-                }
-                Center = Math.round(Center - Center / 2);
-              }
-              document.getElementById('result').innerHTML = "インデックス" + (Center-1) + "にあります。";
-              show(Numbers);
-              //なかった時にnullを返すのがわからない
-              //繰り返しを続けるのはwhile?どんな感じの条件式になるのか
-                }
+            document.getElementById('Current').innerHTML = 'バイナリーサーチがスタートしました';
+        }
     </script>
 
 </head>
@@ -123,17 +64,9 @@
     <h1>prac3</h1>
     <button onclick="runButtonPressed()">run!</button>
     <p id="res"></p>
-
-    <p>結果はコンソールに表示されます。</p>
-    <button onclick="Total10()">合計値を求める</button><br>
-    <button onclick="Ave10()">平均値を求める</button><br>
-    <button onclick="MaxOf10()">最大値を求める</button><br>
-    <button onclick="Minimum10()">最小値を求める</button><br>
-    <p></p>
     <input type="text" id="SearchText">
     <button onclick="search()">バイナリーサーチを行う</button>
     <p id="Current"></p>
-    <p id="result">結果</p>
 </body>
 
 </html>
