@@ -22,43 +22,35 @@
 
             //prac2-2 10個の順数を生成し，n番目とm番目を入れ替える
             //(nとmは乱数にて決定する)
-            numbers = [];
+
             for (var i = 1; i <= 10; i++) {
                 numbers.push(i);
             }
-            var n = Math.floor(Math.random() * 10);
-            var m = Math.floor(Math.random() * 10);
-            document.getElementById('status').innerHTML = "nは" + (n + 1) + ", mは" + (m + 1) + "です。";
-            tmp = numbers[n];
-            numbers[n] = numbers[m];
-            numbers[m] = tmp;
+            var n = Math.floor(Math.random() * 10) + 1; //1から10
+            var m = Math.floor(Math.random() * 10) + 1;
+            console.log('nの値:' + n);
+            console.log('mの値:' + m);
+
+            var tmp = numbers[n - 1];
+            numbers[n - 1] = numbers[m - 1];
+            numbers[m - 1] = tmp;
             show(numbers);
 
-            shuffle20();
-
             //prac2-3 prac2-2を20回繰り返す（シャッフルプログラムの完成）
-            function shuffle20() {
-                numbers = [];
-                var html = "";
-
+            for (var j = 1; j <= 20; j++) {
                 for (var i = 1; i <= 10; i++) {
                     numbers.push(i);
                 }
+                var n = Math.floor(Math.random() * 10) + 1; //1から10
+                var m = Math.floor(Math.random() * 10) + 1;
+                console.log('nの値:' + n);
+                console.log('mの値:' + m);
 
-                for (var j = 1; j <= 20; j++) {
-                    var n = Math.floor(Math.random() * 10);
-                    var m = Math.floor(Math.random() * 10);
-                    html += j + ".：nは" + (n + 1) + ", mは" + (m + 1) + "です。<br>";
-
-                    tmp = numbers[n];
-                    numbers[n] = numbers[m];
-                    numbers[m] = tmp;
-
-                    show(numbers);
-                    document.getElementById('status').innerHTML = html;
-                }
+                var tmp = numbers[n - 1];
+                numbers[n - 1] = numbers[m - 1];
+                numbers[m - 1] = tmp;
+                show(numbers);
             }
-
         }
     </script>
 
@@ -68,7 +60,6 @@
     <h1>prac2</h1>
     <button onclick="runButtonPressed()">run!</button>
     <p id="res"></p>
-    <p id="status"></p>
 </body>
 
 </html>
