@@ -43,5 +43,4 @@ function show(obj) {
     string = string + "<br>";
     document.getElementById("res").insertAdjacentHTML("beforeend", string);
   }
-  console.log(html);
 }

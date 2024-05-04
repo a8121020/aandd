@@ -7,24 +7,39 @@
 
     <script type="text/javascript" src="../aandd.js"></script>
     <script type="text/javascript" src="../jquery.min.js"></script>
-    <link rel="stylesheet" href="search.css">
 
     <script>
         var numbers;
 
         function Create() {
             numbers = [];
-            createOrderedRandomNumbers(numbers, 20);
+            createRandomNumbers(numbers, 20);
             show(numbers);
             document.getElementById('status').innerHTML = "テーブルを作成しました！"
         }
 
-        function choiceSort() {
+        function choiceSortMin() {
+            var Min = 1000
+            var lower = 0;
+            var MinIndex;
+            for (var i = lower; i < numbers.length; i++) {
+                if (Min > numbers[i]) {
+                    Min = numbers[i];
+                    MinIndex = i;
+                }
+            }
+
+            TODO: ソートのミスを解消
+            var tmp = Min;
+            numbers[lower] = numbers[MinIndex];
+            numbers[MinIndex] = tmp;
+            lower += 1;
+            show(numbers);
 
         }
 
-        function choiceSort() {
-
+        function choiceSortMax() {
+            var Min = -5;
         }
 
     </script>
@@ -37,8 +52,8 @@
     <p id="res"></p>
     <!-- <button onclick="linearSearch(L)">線形検索(Linear Search)左から</button>
     <button onclick="linearSearch(R)">線形検索(Linear Search)右から</button> -->
-    <button onclick="choiceSortL()">選択ソート(左から)</button>
-    <button onclick="choiceSortR()">選択ソート(右から)</button>
+    <button onclick="choiceSortMin()">選択ソート(左から)</button>
+    <button onclick="choiceSortMax()">選択ソート(右から)</button>
     <hr>
     <p>現状：<span id="status"></span></p>
 </body>
