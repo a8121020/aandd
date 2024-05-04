@@ -15,15 +15,18 @@
             for (var i = 1; i <= 10; i++) {
                 numbers.push(i);
             }
+            show(numbers);
             //prac1-5 全ての要素に10を足す
-            for (var i = 0; i < numbers.length; i++) {
-                numbers[i] = numbers[i] + 10;
-            }
-            //prac1-6 全ての要素に10をかける
-            for (var i = 0; i < numbers.length; i++) {
-                numbers[i] = numbers[i] * 10;
+            for (var i = 0; i < 10; i++) {
+                numbers[i] += 10;
             }
             show(numbers);
+            //prac1-6 全ての要素に10をかける
+            for (var i = 0; i < 10; i++) {
+                numbers[i] *= 10;
+            }
+            show(numbers);
+
         }
     </script>
 
