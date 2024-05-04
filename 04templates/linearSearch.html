@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script type="text/javascript" src="../aandd.js"></script>
+    <script type="text/javascript" src="../jquery.min.js"></script>
+    <link rel="stylesheet" href="search.css">
+
+    <script>
+        var numbers;
+
+        function Create() {
+            numbers = [];
+            createOrderedRandomNumbers(numbers, 20);
+            show(numbers);
+            document.getElementById('status').innerHTML = "テーブルを作成しました！"
+        }
+
+        function linearSearch(Which) {
+            var searchNum = document.getElementById('inputNumber').value;
+            var status = false;
+            var foundIndex;
+            if (!searchNum) {
+                document.getElementById('status').innerHTML = "探したい数を入力してください！";
+                return;
+            }
+
+            if (Which == "L") {
+                for (var i = 0; i < numbers.length; i++) {
+                    if (searchNum == numbers[i]) {
+                        status = true;
+                        foundIndex = i;
+                        break;
+                    }
+                }
+            } else if (which == "R") {
+                for (var i = numbers.length; i < numbers.length; i--) {
+                    if (searchNum == numbers[i]) {
+                        status = true;
+                        foundIndex = i;
+                    }
+                }
+            }
+
+            if (status == true) {
+                document.getElementById('status').innerHTML = "探している数" + searchNum + "はインデックス" + foundIndex + "にありました。";
+            } else {
+                document.getElementById('status').innerHTML = "探している数" + searchNum + "は見つかりませんでした。";
+            }
+        }
+
+        function linearSearchL() {
+            var searchNum = document.getElementById('inputNumber').value;
+            var status = false;
+            var foundIndex;
+            if (!searchNum) {
+                document.getElementById('status').innerHTML = "探したい数を入力してください！";
+                return;
+            }
+
+            for (var i = 0; i < numbers.length; i++) {
+                if (searchNum == numbers[i]) {
+                    status = true;
+                    foundIndex = i;
+                    break;
+                }
+            }
+
+            if (status == true) {
+                document.getElementById('status').innerHTML = "探している数" + searchNum + "はインデックス" + foundIndex + "にありました。";
+            } else {
+                document.getElementById('status').innerHTML = "探している数" + searchNum + "は見つかりませんでした。";
+            }
+        }
+
+
+        function linearSearchR() {
+            var searchNum = document.getElementById('inputNumber').value;
+            var status = false;
+            var foundIndex;
+            if (!searchNum) {
+                document.getElementById('status').innerHTML = "探したい数を入力してください！";
+                return;
+            }
+
+            for (var i = numbers.length; i > 0; i--) {
+                if (searchNum == numbers[i]) {
+                    status = true;
+                    foundIndex = i;
+                }
+            }
+
+            if (status == true) {
+                var FoundTd = document.getElementById('td' + (foundIndex + 1));
+                document.getElementById('status').innerHTML = "探している数" + searchNum + "はインデックス" + foundIndex + "にありました。";
+                FoundTd.classList.add('highLight');
+                console.log(FoundTd);
+            } else {
+                document.getElementById('status').innerHTML = "探している数" + searchNum + "は見つかりませんでした。";
+            }
+
+
+        }
+    </script>
+
+</head>
+
+<body>
+    <h1>ex0-5</h1>
+    <button onclick="Create()">テーブルを作る</button>
+    <p id="res"></p>
+    <!-- <button onclick="linearSearch(L)">線形検索(Linear Search)左から</button>
+    <button onclick="linearSearch(R)">線形検索(Linear Search)右から</button> -->
+    <button onclick="linearSearchL()">線形検索(Linear Search)左から</button>
+    <button onclick="linearSearchR()">線形検索(Linear Search)右から</button>
+    <hr>
+    探している数：<input id="inputNumber" type="text">
+    <hr>
+    <p>現状：<span id="status"></span></p>
+</body>
+
+</html>

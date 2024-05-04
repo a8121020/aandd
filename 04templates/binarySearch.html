@@ -38,6 +38,7 @@
                 if (searchNum == numbers[middle]) {
                     document.getElementById('status').innerHTML = "探している数" + searchNum + "が見つかりました！検索作業を終了します。";
                     status = true;
+                    break;
                 } else if (searchNum < numbers[middle]) {
                     higher = middle;
                 } else if (searchNum > numbers[middle]) {

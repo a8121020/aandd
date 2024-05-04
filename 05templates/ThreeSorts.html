@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script type="text/javascript" src="../aandd.js"></script>
+    <script type="text/javascript" src="../jquery.min.js"></script>
+    <link rel="stylesheet" href="search.css">
+
+    <script>
+        var numbers;
+
+        function Create() {
+            numbers = [];
+            createOrderedRandomNumbers(numbers, 20);
+            show(numbers);
+            document.getElementById('status').innerHTML = "テーブルを作成しました！"
+        }
+
+        function bubbleSortL() {
+            var searchNum = document.getElementById('inputNumber').value;
+        }
+
+        function bubbleSortR() {
+            var searchNum = document.getElementById('inputNumber').value;
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <h1>ソート3種類</h1>
+    <button onclick="Create()">テーブルを作る</button>
+    <p id="res"></p>
+    <h2>バブルソート</h2>
+    <button onclick="bubbleSortL()">バブルソート(左から)</button>
+    <button onclick="bubbleSortR()">バブルソート(右から)</button>
+    <hr>
+    <h2>選択ソート</h2>
+    <button onclick="choiceSortL()">選択ソート(左から)</button>
+    <button onclick="choiceSortR()">選択ソート(右から)</button>
+    <hr>
+    <h2>挿入ソート</h2>
+    <button onclick="linearSearchL()">挿入ソート(左から)</button>
+    <button onclick="linearSearchR()">挿入ソート(右から)</button>
+    <hr>
+    <p>現状：<span id="status"></span></p>
+</body>
+
+</html>

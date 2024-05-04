@@ -32,7 +32,7 @@ function show(obj) {
     html = html + '<table border="1">';
     html = html + "<tr>";
     for (var i = 0; i < obj.length; i++) {
-      html = html + "<td>" + obj[i] + "</td>";
+      html = html + "<td id=td" + i + ">" + obj[i] + "</td>";
     }
     html = html + "</tr>";
     html = html + "</table>";
@@ -43,4 +43,5 @@ function show(obj) {
     string = string + "<br>";
     document.getElementById("res").insertAdjacentHTML("beforeend", string);
   }
+  console.log(html);
 }
