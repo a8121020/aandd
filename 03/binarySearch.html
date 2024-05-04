@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script type="text/javascript" src="../aandd.js"></script>
+    <script type="text/javascript" src="../jquery.min.js"></script>
+
+    <script>
+        var numbers;
+
+        function Create() {
+            numbers = [];
+            createOrderedRandomNumbers(numbers, 20);
+            show(numbers);
+            document.getElementById('status').innerHTML = "テーブルを作成しました！"
+        }
+
+        function binary() {
+            var searchNum = document.getElementById('inputNumber').value;
+            if (!searchNum) {
+                document.getElementById('status').innerHTML = "探したい数を入力してください！";
+            }
+
+            var lower; //選択範囲の一番左側の数のインデックス
+            var higher; //選択範囲の一番右側の数のインデックス
+            var middle; //中央の数
+            var notFoundCount = 0;
+            var status;
+
+            lower = 0;
+            higher = numbers.length - 1;
+            middle = Math.ceil(lower + higher / 2);
+
+            for (var i = 0; i < (numbers.length / 2); i++) {
+                if (searchNum == numbers[middle]) {
+                    document.getElementById('status').innerHTML = "探している数" + searchNum + "が見つかりました！検索作業を終了します。";
+                    status = true;
+                } else if (searchNum < numbers[middle]) {
+                    higher = middle;
+                } else if (searchNum > numbers[middle]) {
+                    lower = middle;
+                }
+                middle = Math.ceil((lower + higher) / 2);
+            }
+            if (status !== true) {
+                document.getElementById('status').innerHTML = "探している数" + searchNum + "は見つかりませんでした。";
+            }
+        }
+
+
+    </script>
+
+</head>
+
+<body>
+    <h1>ex0-5</h1>
+    <button onclick="Create()">テーブルを作る</button>
+    <p id="res"></p>
+    <button onclick="binary()" id="searchButton">バイナリーサーチ</button>
+    <hr>
+    探している数：<input id="inputNumber" type="text">
+    <hr>
+    <p>現状：<span id="status"></span></p>
+</body>
+
+</html>

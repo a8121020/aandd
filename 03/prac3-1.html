@@ -17,6 +17,7 @@
             for (var i = 0; i < 10; i++) {
                 numbers.push(Math.floor(Math.random() * 50)) + 1;
                 total = total + numbers[i];
+                console.log(i);
             }
             show(numbers);
             console.log(total);
@@ -46,6 +47,14 @@
                 }
             }
             console.log('最小値:' + tmpMin);
+
+            var moji = "あいうえお";
+            var moji2 = moji.split('');
+            console.log(moji2);
+            for (var i = 0; moji2.length; i++) {
+                var a = moji2.pop();
+                console.log(a);
+            }
         }
 
 
