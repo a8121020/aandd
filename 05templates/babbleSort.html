@@ -7,44 +7,78 @@
 
     <script type="text/javascript" src="../aandd.js"></script>
     <script type="text/javascript" src="../jquery.min.js"></script>
-    <link rel="stylesheet" href="search.css">
-
     <script>
         var numbers;
+        var i = -1; //繰り返し(左から)回数の初期値
+        var j;
+
 
         function Create() {
             numbers = [];
             createRandomNumbers(numbers, 20);
             show(numbers);
             document.getElementById('status').innerHTML = "テーブルを作成しました！"
+            j = numbers.length;
         }
 
-        function bubbleSortL() {
-            for (var j = 0; j < numbers.length; j++) {
-                for (var i = 0; i < numbers.length; i++) {
-                    if (numbers[i] > numbers[i + 1]) {
-                        var tmp = numbers[i];
-                        numbers[i] = numbers[i + 1];
-                        numbers[i + 1] = tmp;
-                    }
-                }
+        // function bubbleSortL() {
+        //     for (var j = 0; j < numbers.length; j++) {
+        //         for (var i = 0; i < numbers.length; i++) {
+        //             if (numbers[i] > numbers[i + 1]) {
+        //                 var tmp = numbers[i];
+        //                 numbers[i] = numbers[i + 1];
+        //                 numbers[i + 1] = tmp;
+        //             }
+        //         }
+        //     }
+        //     show(numbers);
+        //     document.getElementById('status').innerHTML = "ソートを終了しました！"
+        // }
+
+        // function bubbleSortR() {
+        //     for (var j = 0; j < numbers.length; j++) {
+        //         for (var i = numbers.length; i > 0; i--) {
+        //             if (numbers[i] < numbers[i - 1]) {
+        //                 var tmp = numbers[i];
+        //                 numbers[i] = numbers[i - 1];
+        //                 numbers[i - 1] = tmp;
+        //             }
+        //         }
+        //     }
+        //     show(numbers);
+        //     document.getElementById('status').innerHTML = "ソートを終了しました！"
+        // }
+
+        //バブルソートを左から1回だけ行う
+        function bubbleSortL1() {
+            i += 1; //繰り返し回数をカウント
+            console.log(numbers[i], numbers[i + 1]);
+            var tmp;
+            if (numbers[i] > numbers[i + 1]) {
+                tmp = numbers[i];
+                numbers[i] = numbers[i + 1];
+                numbers[i + 1] = tmp;
+            }
+            if (i == numbers.length - 1) {
+                i = -1;
             }
             show(numbers);
-            document.getElementById('status').innerHTML = "ソートを終了しました！"
         }
 
-        function bubbleSortR() {
-            for (var j = 0; j < numbers.length; j++) {
-                for (var i = numbers.length; i > 0; i--) {
-                    if (numbers[i] < numbers[i - 1]) {
-                        var tmp = numbers[i];
-                        numbers[i] = numbers[i - 1];
-                        numbers[i - 1] = tmp;
-                    }
-                }
+        //バブルソートを右から1回だけ行う
+        function bubbleSortR1() {
+            j -= 1; //繰り返し回数をカウント
+            console.log(numbers[j], numbers[j - 1]);
+            var tmp;
+            if (numbers[j - 1] > numbers[j]) {
+                tmp = numbers[j];
+                numbers[j] = numbers[j - 1];
+                numbers[j - 1] = tmp;
+            }
+            if (j == 1) {
+                j = numbers.length;
             }
             show(numbers);
-            document.getElementById('status').innerHTML = "ソートを終了しました！"
         }
 
     </script>
@@ -57,8 +91,8 @@
     <p id="res"></p>
     <!-- <button onclick="linearSearch(L)">線形検索(Linear Search)左から</button>
     <button onclick="linearSearch(R)">線形検索(Linear Search)右から</button> -->
-    <button onclick="bubbleSortL()">バブルソート(左から)</button>
-    <button onclick="bubbleSortR()">バブルソート(右から)</button>
+    <button onclick="bubbleSortL1()">バブルソート(左から)</button>
+    <button onclick="bubbleSortR1()">バブルソート(右から)</button>
     <hr>
     <p>現状：<span id="status"></span></p>
 </body>

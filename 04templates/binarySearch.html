@@ -10,43 +10,44 @@
 
     <script>
         var numbers;
+        var lower = 0; //選択範囲の一番左側の数のインデックス
+        var higher;
+        var middle; //中央の数
+        var status;
+        var count = 0;
 
         function Create() {
             numbers = [];
             createOrderedRandomNumbers(numbers, 20);
             show(numbers);
-            document.getElementById('status').innerHTML = "テーブルを作成しました！"
+            higher = numbers.length - 1;
+            document.getElementById('status').innerHTML = "テーブルを作成しました！";
         }
 
+
         function binary() {
+            count += 1;
+            document.getElementById('count').innerHTML = count;
             var searchNum = document.getElementById('inputNumber').value;
             if (!searchNum) {
                 document.getElementById('status').innerHTML = "探したい数を入力してください！";
             }
 
-            var lower; //選択範囲の一番左側の数のインデックス
-            var higher; //選択範囲の一番右側の数のインデックス
-            var middle; //中央の数
-            var notFoundCount = 0;
-            var status;
-
-            lower = 0;
-            higher = numbers.length - 1;
             middle = Math.ceil((lower + higher) / 2);
+            console.log(middle);
+            document.getElementById('Index').innerHTML = middle;
 
-            for (var i = 0; i < (numbers.length / 2); i++) {
-                if (searchNum == numbers[middle]) {
-                    document.getElementById('status').innerHTML = "探している数" + searchNum + "が見つかりました！検索作業を終了します。";
-                    status = true;
-                    break;
-                } else if (searchNum < numbers[middle]) {
-                    higher = middle;
-                } else if (searchNum > numbers[middle]) {
-                    lower = middle;
-                }
-                middle = Math.ceil((lower + higher) / 2);
+
+            if (searchNum == numbers[middle]) {
+                document.getElementById('status').innerHTML = "探している数" + searchNum + "が見つかりました！" + Number(middle) + "番地にあります！" + "検索作業を終了します。";
+                status = true;
+            } else if (searchNum < numbers[middle]) {
+                higher = middle;
+            } else if (searchNum > numbers[middle]) {
+                lower = middle;
             }
-            if (status !== true) {
+
+            if (count == numbers.length) {
                 document.getElementById('status').innerHTML = "探している数" + searchNum + "は見つかりませんでした。";
             }
         }
@@ -65,6 +66,8 @@
     探している数：<input id="inputNumber" type="text">
     <hr>
     <p>現状：<span id="status"></span></p>
+    <p><span id="count"></span>回目</p>
+    <p><span id="Index"></span>番地</p>
 </body>
 
 </html>

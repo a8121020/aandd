@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script type="text/javascript" src="../aandd.js"></script>
+    <script type="text/javascript" src="../jquery.min.js"></script>
+
+    <script>
+        function runButtonPressed() {
+
+            var moji = document.getElementById('text').value;
+            if (!moji) {
+                document.getElementById('Current').innerHTML = "何か文字を入力してください！";
+                return;
+            }
+            var moji = moji.split('');
+            var reverse = [];
+            console.log(moji);
+            for (var i = moji.length - 1; i >= 0; i--) {
+                reverse.push(moji[i]);
+            }
+            console.log(reverse);
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <h1>prac3</h1>
+    <button onclick="runButtonPressed()">run!</button>
+    <p id="res"></p>
+    <input type="text" id="text">
+    <p id="Current"></p>
+</body>
+
+</html>
